@@ -1,0 +1,67 @@
+verilog xil_defaultlib --include "C:/Xilinx/Vivado/2021.2/data/xilinx_vip/include" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/3007/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/1b7e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/122e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/b205/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/fd26/hdl/verilog" \
+"../../../bd/design_1/ip/design_1_processing_system7_0_0/sim/design_1_processing_system7_0_0.v" \
+"../../../bd/design_1/ip/design_1_blk_mem_gen_0_0/sim/design_1_blk_mem_gen_0_0.v" \
+"../../../bd/design_1/ip/design_1_util_vector_logic_0_0/sim/design_1_util_vector_logic_0_0.v" \
+"../../../bd/design_1/ip/design_1_system_ila_0_0/bd_0/sim/bd_f60c.v" \
+"../../../bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_0/sim/bd_f60c_ila_lib_0.v" \
+"../../../bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_1/bd_f60c_g_inst_0_gigantic_mux.v" \
+"../../../bd/design_1/ip/design_1_system_ila_0_0/bd_0/ip/ip_1/sim/bd_f60c_g_inst_0.v" \
+"../../../bd/design_1/ip/design_1_system_ila_0_0/sim/design_1_system_ila_0_0.v" \
+"../../../bd/design_1/sim/design_1.v" \
+"../../../bd/design_1/ip/design_1_auto_pc_0/sim/design_1_auto_pc_0.v" \
+"../../../bd/design_1/ip/design_1_auto_pc_1/sim/design_1_auto_pc_1.v" \
+"../../../bd/design_1/ip/design_1_mMPU_Controller_AXIS_1_0/src/FIFO_Out_fifo_generator_0_0/sim/FIFO_Out_fifo_generator_0_0.v" \
+"../../../bd/design_1/ip/design_1_mMPU_Controller_AXIS_1_0/src/FIFO_Out_fifo_generator_0_3/sim/FIFO_Out_fifo_generator_0_3.v" \
+"../../../bd/design_1/ip/design_1_mMPU_Controller_AXIS_1_0/src/FIFO_Out_fifo_generator_0_4/sim/FIFO_Out_fifo_generator_0_4.v" \
+"../../../bd/design_1/ip/design_1_mMPU_Controller_AXIS_1_0/src/FIFO_Out_fifo_generator_0_5/sim/FIFO_Out_fifo_generator_0_5.v" \
+"../../../bd/design_1/ipshared/498d/sim/FIFO_Out.v" \
+"../../../bd/design_1/ipshared/498d/src/FIFO_Out_wrapper.v" \
+"../../../bd/design_1/ipshared/498d/src/immu_reg.v" \
+"../../../bd/design_1/ipshared/498d/src/output_coloumn_vector.v" \
+
+sv xil_defaultlib --include "C:/Xilinx/Vivado/2021.2/data/xilinx_vip/include" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/3007/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/1b7e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/122e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/b205/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/fd26/hdl/verilog" \
+"../../../bd/design_1/ipshared/498d/src/AddressMUX_in.sv" \
+"../../../bd/design_1/ipshared/498d/src/Address_Sequencing.sv" \
+"../../../bd/design_1/ipshared/498d/src/Decoder_1x2.sv" \
+"../../../bd/design_1/ipshared/498d/src/Decoding_Logic.sv" \
+"../../../bd/design_1/ipshared/498d/src/Flag_Registers.sv" \
+"../../../bd/design_1/ipshared/498d/src/L_S_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/MUX_4x1.sv" \
+"../../../bd/design_1/ipshared/498d/src/MUX_8x1.sv" \
+"../../../bd/design_1/ipshared/498d/src/MUX_Nbit_2x1.sv" \
+"../../../bd/design_1/ipshared/498d/src/PIMTranslate_MUX_sel.sv" \
+"../../../bd/design_1/ipshared/498d/src/Register_File.sv" \
+"../../../bd/design_1/ipshared/498d/src/SR_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/Top_Module.sv" \
+"../../../bd/design_1/ipshared/498d/src/clk_crossbar.sv" \
+"../../../bd/design_1/ipshared/498d/src/crossbar_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/crossbarvec_bit.sv" \
+"../../../bd/design_1/ipshared/498d/src/dest_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/flag_check.sv" \
+"../../../bd/design_1/ipshared/498d/src/flag_update.sv" \
+"../../../bd/design_1/ipshared/498d/src/immediate_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/instruction_type_ld.sv" \
+"../../../bd/design_1/ipshared/498d/src/iw_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/jump_ld_address.sv" \
+"../../../bd/design_1/ipshared/498d/src/mask_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/mem_address_to_row_vector.sv" \
+"../../../bd/design_1/ipshared/498d/src/mem_address_to_vector.sv" \
+"../../../bd/design_1/ipshared/498d/src/memory_addressing.sv" \
+"../../../bd/design_1/ipshared/498d/src/mov_Decoder.sv" \
+"../../../bd/design_1/ipshared/498d/src/mov_mux_bus.sv" \
+"../../../bd/design_1/ipshared/498d/src/output_cmask.sv" \
+"../../../bd/design_1/ipshared/498d/src/output_row_vector.sv" \
+"../../../bd/design_1/ipshared/498d/src/ret_addr_Stack.sv" \
+"../../../bd/design_1/ipshared/498d/src/src_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/start_load.sv" \
+"../../../bd/design_1/ipshared/498d/src/temp_reg.sv" \
+"../../../bd/design_1/ipshared/498d/src/uCode_Decoder.sv" \
+"../../../bd/design_1/ipshared/498d/src/ubr_update.sv" \
+
+verilog xil_defaultlib --include "C:/Xilinx/Vivado/2021.2/data/xilinx_vip/include" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/3007/hdl" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/1b7e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/122e/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/b205/hdl/verilog" --include "../../../../mMPU_System_Design.gen/sources_1/bd/design_1/ipshared/fd26/hdl/verilog" \
+"../../../bd/design_1/ipshared/498d/src/axis_mMPU_v4.v" \
+"../../../bd/design_1/ip/design_1_mMPU_Controller_AXIS_1_0/sim/design_1_mMPU_Controller_AXIS_1_0.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

@@ -1,0 +1,24 @@
+Nothing to build in platform 'XSA'
+
+12:42:39 **** Incremental Build of configuration Debug for project mMPU ****
+make all 
+make --no-print-directory pre-build
+a9-linaro-pre-build-step
+' '
+make --no-print-directory main-build
+'Building file: ../src/mMPU_CPU_Source_Code.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/mMPU_CPU_Source_Code.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -IC:/Users/LAB/Documents/Vivado_Projects/mMPU_System_Design/mMPU_System_Design.Vitis/XSA/export/XSA/sw/XSA/standalone_ps7_cortexa9_0/bspinclude/include -MMD -MP -MF"src/mMPU_CPU_Source_Code.d" -MT"src/mMPU_CPU_Source_Code.o" -o "src/mMPU_CPU_Source_Code.o" "../src/mMPU_CPU_Source_Code.c"
+'Finished building: ../src/mMPU_CPU_Source_Code.c'
+' '
+'Building target: mMPU.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -LC:/Users/LAB/Documents/Vivado_Projects/mMPU_System_Design/mMPU_System_Design.Vitis/XSA/export/XSA/sw/XSA/standalone_ps7_cortexa9_0/bsplib/lib -o "mMPU.elf"  ./src/mMPU_CPU_Source_Code.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: mMPU.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size mMPU.elf  |tee "mMPU.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  38364	   3064	  22664	  64092	   fa5c	mMPU.elf
+'Finished building: mMPU.elf.size'
+' '

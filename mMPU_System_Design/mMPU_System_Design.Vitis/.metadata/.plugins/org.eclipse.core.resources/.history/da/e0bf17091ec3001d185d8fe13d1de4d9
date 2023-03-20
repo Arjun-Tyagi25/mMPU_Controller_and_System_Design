@@ -1,0 +1,109 @@
+#include "xaxidma.h"
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_cache.h"
+#include "xil_io.h"
+#include "xscugic.h"
+#include "xuartps.h"
+#include "xil_types.h"
+#include "inttypes.h"
+#include "xil_printf.h"
+#include "stdio.h"
+
+
+XScuGic IntcInstance;
+
+static void PIMInstruction_ISR(void *CallBackRef);
+u32 checkIdle(u32 baseAddress, u32 offset);
+int done;
+
+u64 PIM[]  = {(u64)0b0000000000000000000000000000000000000000011100000000000000000010,		//Instruction 1
+			  (u64)0b0000000000000000000000000000000000000000011100000000000000000011,		//Instruction 2
+			  (u64)0b0000000000000000000000000000000000000001111100000000000010100100,		//Instruction 3
+			  (u64)0b0010000000000000000000000011000011000000000000001100000001101000,		//Instruction 4
+			   };
+
+int main()
+{
+	u32 status;
+
+	//DMA0 Controller Configuration
+	XAxiDma_Config *myDmaConfig0;
+	XAxiDma myDma0;
+	myDmaConfig0 = XAxiDma_LookupConfigBaseAddr(XPAR_AXI_DMA_0_BASEADDR);
+	status = XAxiDma_CfgInitialize(&myDma0, myDmaConfig0);
+	if(status != XST_SUCCESS)
+	{
+		xil_printf("DMA 0 Configuration failed\n");
+		return -1;
+	}
+
+	//Interrupt Controller Configuration
+	XScuGic_Config *IntcConfig;
+	IntcConfig = XScuGic_LookupConfig(XPAR_PS7_SCUGIC_0_DEVICE_ID);
+	status = XScuGic_CfgInitialize(&IntcInstance, IntcConfig, IntcConfig->CpuBaseAddress);
+	if(status != XST_SUCCESS)
+	{
+		xil_printf("Interrupt controller initialization failed\n");
+		return -1;
+	}
+	xil_printf("Status of Interrupt Controller = %x\n\r",status);
+
+	//Interrupt Priority
+	XScuGic_SetPriorityTriggerType(&IntcInstance,XPAR_FABRIC_MMPU_CONTROLLER_AXIS_1_PIM_INTR,0x0,0x3);
+	status = XScuGic_Connect(&IntcInstance,XPAR_FABRIC_MMPU_CONTROLLER_AXIS_1_PIM_INTR,(Xil_InterruptHandler)PIMInstruction_ISR,(void *)&myDma0);
+	if(status != XST_SUCCESS)
+	{
+		xil_printf("Interrupt connection failed");
+		return -1;
+	}
+	xil_printf("Status of Interrupt Priority = %x\n\r",status);
+	XScuGic_Enable(&IntcInstance,XPAR_FABRIC_AXIS_MMPU_V4_1_PIM_INTR);
+
+	Xil_ExceptionInit();
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler,(void *)&IntcInstance);
+	Xil_ExceptionEnable();
+
+	status = XAxiDma_SimpleTransfer(&myDma0, (u32)&PIM[0], sizeof(PIM)/sizeof(u64)*8, XAXIDMA_DMA_TO_DEVICE);
+	xil_printf("Status of Instruction transfer = %x\n\r",status);
+
+	while (!done)
+	{}
+
+}
+
+
+u32 checkIdle(u32 baseAddress,u32 offset){
+	u32 status;
+	status = (XAxiDma_ReadReg(baseAddress,offset))&XAXIDMA_IDLE_MASK;
+	return status;
+}
+
+static void PIMInstruction_ISR(void *CallBackRef)
+{
+	static int i = 1;
+	int status;
+
+	XScuGic_Disable(&IntcInstance,XPAR_FABRIC_AXIS_MMPU_V4_1_PIM_INTR);
+
+	status = checkIdle(XPAR_AXI_DMA_0_BASEADDR,0x4);
+	while(status == 0)
+	{
+		status = checkIdle(XPAR_AXI_DMA_0_BASEADDR,0x4);
+	}
+
+	if(i < sizeof(PIM)/sizeof(u64))
+	{
+		xil_printf("Sending instruction %d\n\r",i);
+		xil_printf("Instruction upper %d = %llx\n\r",i,PIM[i]);
+		status = XAxiDma_SimpleTransfer((XAxiDma *)CallBackRef,(u32)&PIM[i],8,XAXIDMA_DMA_TO_DEVICE);
+		xil_printf("Status of sending instruction %d is %x\n\r",i,status);
+		i++;
+	}
+
+	if (i == sizeof(PIM)/sizeof(u64))
+		done = 1;
+
+	XScuGic_Enable(&IntcInstance,XPAR_FABRIC_AXIS_MMPU_V4_1_PIM_INTR);
+}
+
